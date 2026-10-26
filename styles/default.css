@@ -6,11 +6,24 @@
 :root {
     --primary-color: rgba(220, 10, 45, 1);
     --text-color: rgba(34, 34, 34, 1);
+    --bg-color: rgba(244, 245, 249, 1);
+    --card-bg-color: rgba(255, 255, 255, 1);
+    --card-radius: 24px;
+    --card-shadow: 0 4px 16px rgba(20, 20, 50, 0.08);
+    --card-shadow-hover: 0 12px 28px rgba(20, 20, 50, 0.16);
     --content-max-width: 1440px;
 }
 
 body {
+    min-height: 100vh;
+    background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
 }
 
 .content {

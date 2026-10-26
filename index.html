@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,35 @@
 
 <body onload="init()">
 
-    <main class="content" id="pokedex"></main>
+    <div class="header-wrapper">
+        <header class="content header">
+            <a href="./index.html" aria-label="Pokedex home">
+                <img src="./assets/icons/logo.svg" alt="Pokedex logo" class="logo">
+            </a>
+            <h1>Pokedex</h1>
+            <form class="search" role="search" onsubmit="return false">
+                <input type="search" data-id="search-input" placeholder="Search Pokémon (min. 3 letters)"
+                    aria-label="Search Pokémon" minlength="3">
+                <button type="button" data-id="search-button" aria-label="Search">Search</button>
+            </form>
+        </header>
+    </div>
+
+    <main class="content" data-id="content">
+        <p data-id="not-found" class="not-found" hidden>No Pokémon found.</p>
+        <ul class="card-list" id="pokedex"></ul>
+        <button type="button" class="load-more" data-id="load-more-button" aria-label="Load more Pokémon" onclick="loadPokemon()">Load more</button>
+    </main>
+
+    <dialog data-id="dialog" aria-label="Pokémon details">
+        <button type="button" data-id="close-dialog-button" aria-label="Close dialog">×</button>
+        <h2 data-id="overlay-pokemon-name"></h2>
+        <img data-id="dialog-image" src="" alt="">
+        <div class="dialog-nav">
+            <button type="button" data-id="prev-button" aria-label="Previous Pokémon">←</button>
+            <button type="button" data-id="next-button" aria-label="Next Pokémon">→</button>
+        </div>
+    </dialog>
 
 </body>
 

@@ -1,1 +1,73 @@
-/* Grundlayout */
+/* Header */
+.header-wrapper {
+    background-color: var(--primary-color);
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    padding: 16px;
+}
+
+.header h1 {
+    flex: 1;
+    color: #fff;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: 0.5px;
+}
+
+.logo {
+    display: block;
+    width: 44px;
+    height: 44px;
+}
+
+/* Suche */
+.search {
+    display: flex;
+    flex: 1 1 280px;
+    max-width: 420px;
+    gap: 8px;
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 999px;
+    font: inherit;
+}
+
+.search input:focus-visible,
+.search button:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
+}
+
+.search button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--text-color);
+    color: #fff;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.search button:hover {
+    transform: scale(1.05);
+}
+
+/* Hauptbereich */
+main {
+    padding: 24px 16px 48px;
+}
+
+.not-found {
+    padding: 32px 0;
+    text-align: center;
+    font-size: 1.2rem;
+}

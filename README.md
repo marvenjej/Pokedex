@@ -7,6 +7,7 @@ Lernprojekt im Rahmen meiner Weiterbildung zum Softwareentwickler.
 ```
 Pokedex/
 ├── index.html
+├── .gitignore
 ├── script.js           # Logik
 ├── style.css           # Grundlayout
 ├── scripts/
