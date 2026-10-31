@@ -1,3 +1,5 @@
+let currentIndex = 0;
+
 function init() {
     loadPokemon();
 }
@@ -47,16 +49,62 @@ function addPokemons(newPokemons) {
 function renderPokedex() {
     let pokedexRef = document.getElementById("pokedex");
     pokedexRef.innerHTML = "";
-    for (let pokemon of pokemons) {
-        pokedexRef.innerHTML += getPokemonCardHtml(pokemon);
+    for (let i = 0; i < pokemons.length; i++) {
+        pokedexRef.innerHTML += getPokemonCardHtml(pokemons[i], i);
     }
 }
 
-function getPokemonCardHtml(pokemon) {
+function openDialog(index) {
+    currentIndex = index;
+    renderDialog();
+    let dialogRef = document.getElementById("dialog");
+    dialogRef.showModal();
+}
+
+function renderDialog() {
+    let pokemon = pokemons[currentIndex];
+    let name = capitalize(pokemon.name);
+    let nameRef = document.getElementById("overlay-pokemon-name");
+    let imageRef = document.getElementById("dialog-image");
+    nameRef.innerHTML = name;
+    imageRef.src = pokemon.sprites.other["official-artwork"].front_default;
+    imageRef.alt = name;
+    document.getElementById("dialog-stats").innerHTML = getStatsHtml(pokemon.stats);
+}
+
+function showNext() {
+    currentIndex = (currentIndex + 1) % pokemons.length;
+    renderDialog();
+}
+
+function showPrev() {
+    currentIndex = (currentIndex - 1 + pokemons.length) % pokemons.length;
+    renderDialog();
+}
+
+function getStatsHtml(stats) {
+    let statsHtml = "";
+    for (let statSlot of stats) {
+        let statName = statSlot.stat.name;
+        if (statName == "hp" || statName == "attack" || statName == "defense") {
+            statsHtml += getStatTemplate(getStatLabel(statName), statSlot.base_stat);
+        }
+    }
+    return statsHtml;
+}
+
+function getStatLabel(statName) {
+    if (statName == "hp") {
+        return "HP";
+    }
+    return capitalize(statName);
+}
+
+function getPokemonCardHtml(pokemon, index) {
     let name = capitalize(pokemon.name);
     let image = pokemon.sprites.other["official-artwork"].front_default;
     let color = getTypeColor(pokemon.types[0].type.name);
-    return getCardTemplate(name, image, color, getTypesHtml(pokemon.types));
+    return getCardTemplate(index, name, image, color, getTypesHtml(pokemon.types));
 }
 
 function getTypesHtml(types) {
