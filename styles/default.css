@@ -21,6 +21,10 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 button {
     font: inherit;
     cursor: pointer;

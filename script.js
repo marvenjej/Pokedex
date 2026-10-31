@@ -59,6 +59,22 @@ function openDialog(index) {
     renderDialog();
     let dialogRef = document.getElementById("dialog");
     dialogRef.showModal();
+    document.body.classList.add("no-scroll");
+}
+
+function closeDialog() {
+    let dialogRef = document.getElementById("dialog");
+    dialogRef.close();
+}
+
+function closeOnBackdrop(event) {
+    if (event.target.id == "dialog") {
+        closeDialog();
+    }
+}
+
+function unlockScroll() {
+    document.body.classList.remove("no-scroll");
 }
 
 function renderDialog() {

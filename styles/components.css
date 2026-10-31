@@ -93,6 +93,17 @@
     transform: none;
 }
 
+/* Dialog */
+dialog {
+    padding: 0;
+    border: none;
+    border-radius: var(--card-radius);
+}
+
+.dialog-content {
+    padding: 24px;
+}
+
 /* Ladescreen */
 .loading {
     position: fixed;

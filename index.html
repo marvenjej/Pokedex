@@ -40,14 +40,16 @@
         <button type="button" class="load-more" id="load-more-button" data-id="load-more-button" aria-label="Load more Pokémon" onclick="loadPokemon()">Load more</button>
     </main>
 
-    <dialog id="dialog" data-id="dialog" aria-label="Pokémon details">
-        <button type="button" id="close-dialog-button" data-id="close-dialog-button" aria-label="Close dialog">×</button>
-        <h2 id="overlay-pokemon-name" data-id="overlay-pokemon-name"></h2>
-        <img id="dialog-image" data-id="dialog-image" src="" alt="">
-        <ul class="stats" id="dialog-stats" aria-label="Base stats"></ul>
-        <div class="dialog-nav">
-            <button type="button" id="prev-button" data-id="prev-button" aria-label="Previous Pokémon" onclick="showPrev()">←</button>
-            <button type="button" id="next-button" data-id="next-button" aria-label="Next Pokémon" onclick="showNext()">→</button>
+    <dialog id="dialog" data-id="dialog" aria-label="Pokémon details" onclick="closeOnBackdrop(event)" onclose="unlockScroll()">
+        <div class="dialog-content">
+            <button type="button" id="close-dialog-button" data-id="close-dialog-button" aria-label="Close dialog" onclick="closeDialog()">×</button>
+            <h2 id="overlay-pokemon-name" data-id="overlay-pokemon-name"></h2>
+            <img id="dialog-image" data-id="dialog-image" src="" alt="">
+            <ul class="stats" id="dialog-stats" aria-label="Base stats"></ul>
+            <div class="dialog-nav">
+                <button type="button" id="prev-button" data-id="prev-button" aria-label="Previous Pokémon" onclick="showPrev()">←</button>
+                <button type="button" id="next-button" data-id="next-button" aria-label="Next Pokémon" onclick="showNext()">→</button>
+            </div>
         </div>
     </dialog>
 
