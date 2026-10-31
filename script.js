@@ -1,5 +1,6 @@
 let currentIndex = 0;
 let scrollPosition = 0;
+const MAX_STAT = 255;
 
 function init() {
     loadPokemon();
@@ -88,13 +89,23 @@ function unlockScroll() {
 
 function renderDialog() {
     let pokemon = pokemons[currentIndex];
+    let color = getTypeColor(pokemon.types[0].type.name);
+    let headerRef = document.getElementById("dialog-header");
+    let typesRef = document.getElementById("dialog-types");
+    let statsRef = document.getElementById("dialog-stats");
+    renderDialogTitle(pokemon);
+    headerRef.style.backgroundColor = color;
+    typesRef.innerHTML = getTypesHtml(pokemon.types);
+    statsRef.innerHTML = getStatsHtml(pokemon.stats, color);
+}
+
+function renderDialogTitle(pokemon) {
     let name = capitalize(pokemon.name);
     let nameRef = document.getElementById("overlay-pokemon-name");
     let imageRef = document.getElementById("dialog-image");
     nameRef.innerHTML = name;
     imageRef.src = pokemon.sprites.other["official-artwork"].front_default;
     imageRef.alt = name;
-    document.getElementById("dialog-stats").innerHTML = getStatsHtml(pokemon.stats);
 }
 
 function showNext() {
@@ -107,12 +118,13 @@ function showPrev() {
     renderDialog();
 }
 
-function getStatsHtml(stats) {
+function getStatsHtml(stats, color) {
     let statsHtml = "";
     for (let statSlot of stats) {
         let statName = statSlot.stat.name;
         if (statName == "hp" || statName == "attack" || statName == "defense") {
-            statsHtml += getStatTemplate(getStatLabel(statName), statSlot.base_stat);
+            let percent = Math.round(statSlot.base_stat / MAX_STAT * 100);
+            statsHtml += getStatTemplate(getStatLabel(statName), statSlot.base_stat, percent, color);
         }
     }
     return statsHtml;

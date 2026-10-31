@@ -13,10 +13,13 @@ function getTypeTemplate(typeName) {
     return `<li class="type">${typeName}</li>`;
 }
 
-function getStatTemplate(statName, value) {
+function getStatTemplate(statName, value, percent, color) {
     return `
         <li class="stat">
-            <span>${statName}</span>
-            <span>${value}</span>
+            <span class="stat-name">${statName}</span>
+            <span class="stat-value">${value}</span>
+            <div class="stat-bar">
+                <div class="stat-fill" style="width: ${percent}%; background-color: ${color}"></div>
+            </div>
         </li>`;
 }
