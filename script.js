@@ -3,12 +3,45 @@ function init() {
 }
 
 async function loadPokemon() {
-    let pokemonList = await loadPokeData("pokemon?limit=20&offset=" + pokemons.length);
-    for (let listEntry of pokemonList.results) {
-        let pokemonDetails = await loadPokeData(listEntry.url.replace(BASE_URL, ""));
-        pokemons.push(pokemonDetails);
+    showLoading();
+    try {
+        let pokemonList = await loadPokeData("pokemon?limit=20&offset=" + pokemons.length);
+        let newPokemons = await Promise.all(getDetailRequests(pokemonList.results));
+        addPokemons(newPokemons);
+        renderPokedex();
+    } catch (error) {
+        console.error(error);
+    } finally {
+        hideLoading();
     }
-    renderPokedex();
+}
+
+function showLoading() {
+    let loadingRef = document.getElementById("loading");
+    let loadMoreRef = document.getElementById("load-more-button");
+    loadingRef.hidden = false;
+    loadMoreRef.disabled = true;
+}
+
+function hideLoading() {
+    let loadingRef = document.getElementById("loading");
+    let loadMoreRef = document.getElementById("load-more-button");
+    loadingRef.hidden = true;
+    loadMoreRef.disabled = false;
+}
+
+function getDetailRequests(results) {
+    let requests = [];
+    for (let listEntry of results) {
+        requests.push(loadPokeData(listEntry.url.replace(BASE_URL, "")));
+    }
+    return requests;
+}
+
+function addPokemons(newPokemons) {
+    for (let pokemon of newPokemons) {
+        pokemons.push(pokemon);
+    }
 }
 
 function renderPokedex() {

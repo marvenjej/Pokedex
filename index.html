@@ -27,28 +27,33 @@
             </a>
             <h1>Pokedex</h1>
             <form class="search" role="search" onsubmit="return false">
-                <input type="search" data-id="search-input" placeholder="Search Pokémon (min. 3 letters)"
+                <input type="search" id="search-input" data-id="search-input" placeholder="Search Pokémon (min. 3 letters)"
                     aria-label="Search Pokémon" minlength="3">
-                <button type="button" data-id="search-button" aria-label="Search">Search</button>
+                <button type="button" id="search-button" data-id="search-button" aria-label="Search">Search</button>
             </form>
         </header>
     </div>
 
-    <main class="content" data-id="content">
-        <p data-id="not-found" class="not-found" hidden>No Pokémon found.</p>
+    <main class="content" id="content" data-id="content">
+        <p id="not-found" data-id="not-found" class="not-found" hidden>No Pokémon found.</p>
         <ul class="card-list" id="pokedex"></ul>
-        <button type="button" class="load-more" data-id="load-more-button" aria-label="Load more Pokémon" onclick="loadPokemon()">Load more</button>
+        <button type="button" class="load-more" id="load-more-button" data-id="load-more-button" aria-label="Load more Pokémon" onclick="loadPokemon()">Load more</button>
     </main>
 
-    <dialog data-id="dialog" aria-label="Pokémon details">
-        <button type="button" data-id="close-dialog-button" aria-label="Close dialog">×</button>
-        <h2 data-id="overlay-pokemon-name"></h2>
-        <img data-id="dialog-image" src="" alt="">
+    <dialog id="dialog" data-id="dialog" aria-label="Pokémon details">
+        <button type="button" id="close-dialog-button" data-id="close-dialog-button" aria-label="Close dialog">×</button>
+        <h2 id="overlay-pokemon-name" data-id="overlay-pokemon-name"></h2>
+        <img id="dialog-image" data-id="dialog-image" src="" alt="">
         <div class="dialog-nav">
-            <button type="button" data-id="prev-button" aria-label="Previous Pokémon">←</button>
-            <button type="button" data-id="next-button" aria-label="Next Pokémon">→</button>
+            <button type="button" id="prev-button" data-id="prev-button" aria-label="Previous Pokémon">←</button>
+            <button type="button" id="next-button" data-id="next-button" aria-label="Next Pokémon">→</button>
         </div>
     </dialog>
+
+    <div class="loading" id="loading" data-id="loading" role="status" aria-label="Loading Pokémon" hidden>
+        <div class="spinner"></div>
+        <p>Loading…</p>
+    </div>
 
 </body>
 
