@@ -21,8 +21,13 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-body.no-scroll {
-    overflow: hidden;
+html.no-scroll {
+    overflow-y: scroll;
+}
+
+html.no-scroll body {
+    position: fixed;
+    width: 100%;
 }
 
 button {

@@ -1,4 +1,5 @@
 let currentIndex = 0;
+let scrollPosition = 0;
 
 function init() {
     loadPokemon();
@@ -59,7 +60,7 @@ function openDialog(index) {
     renderDialog();
     let dialogRef = document.getElementById("dialog");
     dialogRef.showModal();
-    document.body.classList.add("no-scroll");
+    lockScroll();
 }
 
 function closeDialog() {
@@ -73,8 +74,16 @@ function closeOnBackdrop(event) {
     }
 }
 
+function lockScroll() {
+    scrollPosition = window.scrollY;
+    document.body.style.top = -scrollPosition + "px";
+    document.documentElement.classList.add("no-scroll");
+}
+
 function unlockScroll() {
-    document.body.classList.remove("no-scroll");
+    document.documentElement.classList.remove("no-scroll");
+    document.body.style.top = "";
+    window.scrollTo(0, scrollPosition);
 }
 
 function renderDialog() {
