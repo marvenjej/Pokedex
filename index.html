@@ -26,10 +26,10 @@
                 <img src="./assets/icons/logo.svg" alt="Pokedex logo" class="logo">
             </a>
             <h1>Pokedex</h1>
-            <form class="search" role="search" onsubmit="return false">
+            <form class="search" id="search-form" role="search">
                 <input type="search" id="search-input" data-id="search-input" placeholder="Search Pokémon (min. 3 letters)"
                     aria-label="Search Pokémon" minlength="3">
-                <button type="button" id="search-button" data-id="search-button" aria-label="Search">
+                <button type="button" id="search-button" data-id="search-button" aria-label="Search" onclick="searchPokemon()">
                     <span class="search-text">Search</span>
                     <img src="./assets/icons/search.svg" alt="" class="search-icon">
                 </button>

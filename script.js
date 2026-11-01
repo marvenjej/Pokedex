@@ -1,9 +1,20 @@
+let shownPokemons = [];
 let currentIndex = 0;
 let scrollPosition = 0;
 const MAX_STAT = 255;
+const MIN_SEARCH_LENGTH = 3;
 
 function init() {
+    initSearch();
     loadPokemon();
+}
+
+function initSearch() {
+    let searchFormRef = document.getElementById("search-form");
+    searchFormRef.addEventListener("submit", function (event) {
+        event.preventDefault();
+        searchPokemon();
+    });
 }
 
 async function loadPokemon() {
@@ -12,7 +23,7 @@ async function loadPokemon() {
         let pokemonList = await loadPokeData("pokemon?limit=20&offset=" + pokemons.length);
         let newPokemons = await Promise.all(getDetailRequests(pokemonList.results));
         addPokemons(newPokemons);
-        renderPokedex();
+        searchPokemon();
     } catch (error) {
         console.error(error);
     } finally {
@@ -51,9 +62,30 @@ function addPokemons(newPokemons) {
 function renderPokedex() {
     let pokedexRef = document.getElementById("pokedex");
     pokedexRef.innerHTML = "";
-    for (let i = 0; i < pokemons.length; i++) {
-        pokedexRef.innerHTML += getPokemonCardHtml(pokemons[i], i);
+    for (let i = 0; i < shownPokemons.length; i++) {
+        pokedexRef.innerHTML += getPokemonCardHtml(shownPokemons[i], i);
     }
+}
+
+function searchPokemon() {
+    let searchText = document.getElementById("search-input").value.trim().toLowerCase();
+    shownPokemons = getShownPokemons(searchText);
+    renderPokedex();
+    updateSearchState(searchText);
+}
+
+function getShownPokemons(searchText) {
+    if (searchText.length < MIN_SEARCH_LENGTH) {
+        return pokemons;
+    }
+    return pokemons.filter(pokemon => pokemon.name.includes(searchText));
+}
+
+function updateSearchState(searchText) {
+    let notFoundRef = document.getElementById("not-found");
+    let loadMoreRef = document.getElementById("load-more-button");
+    notFoundRef.hidden = shownPokemons.length > 0;
+    loadMoreRef.hidden = searchText.length >= MIN_SEARCH_LENGTH;
 }
 
 function openDialog(index) {
@@ -88,7 +120,7 @@ function unlockScroll() {
 }
 
 function renderDialog() {
-    let pokemon = pokemons[currentIndex];
+    let pokemon = shownPokemons[currentIndex];
     let color = getTypeColor(pokemon.types[0].type.name);
     let headerRef = document.getElementById("dialog-header");
     let typesRef = document.getElementById("dialog-types");
@@ -109,12 +141,12 @@ function renderDialogTitle(pokemon) {
 }
 
 function showNext() {
-    currentIndex = (currentIndex + 1) % pokemons.length;
+    currentIndex = (currentIndex + 1) % shownPokemons.length;
     renderDialog();
 }
 
 function showPrev() {
-    currentIndex = (currentIndex - 1 + pokemons.length) % pokemons.length;
+    currentIndex = (currentIndex - 1 + shownPokemons.length) % shownPokemons.length;
     renderDialog();
 }
 
