@@ -87,6 +87,10 @@
     box-shadow: var(--card-shadow-hover);
 }
 
+.load-more[hidden] {
+    display: none;
+}
+
 .load-more:disabled {
     opacity: 0.6;
     cursor: not-allowed;
