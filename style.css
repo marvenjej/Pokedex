@@ -61,6 +61,37 @@
     transform: scale(1.05);
 }
 
+.search-icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 480px) {
+    .search {
+        flex-basis: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .search button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+    }
+
+    .search-text {
+        display: none;
+    }
+
+    .search-icon {
+        display: block;
+    }
+}
+
 /* Hauptbereich */
 main {
     padding: 24px 16px 48px;
