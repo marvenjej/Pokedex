@@ -5,8 +5,16 @@ const MAX_STAT = 255;
 const MIN_SEARCH_LENGTH = 3;
 
 function init() {
+    setSearchInputRules();
     initSearch();
     loadPokemon();
+}
+
+function setSearchInputRules() {
+    let searchInputRef = document.getElementById("search-input");
+    searchInputRef.placeholder = `Search Pokémon (min. ${MIN_SEARCH_LENGTH} letters)`;
+    searchInputRef.minLength = MIN_SEARCH_LENGTH;
+    searchInputRef.setAttribute("aria-label", `Search Pokémon, minimum ${MIN_SEARCH_LENGTH} letters`);
 }
 
 function initSearch() {
