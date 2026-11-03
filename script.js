@@ -23,6 +23,12 @@ function initSearch() {
         event.preventDefault();
         searchPokemon();
     });
+    let searchInputRef = document.getElementById("search-input");
+    searchInputRef.addEventListener("input", function () {
+        if (searchInputRef.value.trim() === "") {
+            searchPokemon();
+        }
+    });
 }
 
 async function loadPokemon() {
