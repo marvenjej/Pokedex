@@ -39,7 +39,7 @@ async function loadPokemon() {
         addPokemons(newPokemons);
         searchPokemon();
     } catch (error) {
-        console.error(error);
+        console.error("Failed to load Pokémon:", error);
     } finally {
         hideLoading();
     }
