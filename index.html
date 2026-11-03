@@ -45,7 +45,9 @@
     <dialog id="dialog" data-id="dialog" aria-label="Pokémon details" onclick="closeOnBackdrop(event)" onclose="unlockScroll()">
         <div class="dialog-content">
             <div class="dialog-header" id="dialog-header">
-                <button type="button" class="close-button" id="close-dialog-button" data-id="close-dialog-button" aria-label="Close dialog" onclick="closeDialog()">×</button>
+                <button type="button" class="close-button" id="close-dialog-button" data-id="close-dialog-button" aria-label="Close dialog" onclick="closeDialog()">
+                    <img src="./assets/icons/close.svg" alt="">
+                </button>
                 <h2 id="overlay-pokemon-name" data-id="overlay-pokemon-name"></h2>
                 <img id="dialog-image" data-id="dialog-image" src="" alt="">
                 <ul class="types" id="dialog-types" aria-label="Types"></ul>
@@ -53,8 +55,12 @@
             <div class="dialog-body">
                 <ul class="stats" id="dialog-stats" aria-label="Base stats"></ul>
                 <div class="dialog-nav">
-                    <button type="button" id="prev-button" data-id="prev-button" aria-label="Previous Pokémon" onclick="showPrev()">←</button>
-                    <button type="button" id="next-button" data-id="next-button" aria-label="Next Pokémon" onclick="showNext()">→</button>
+                    <button type="button" id="prev-button" data-id="prev-button" aria-label="Previous Pokémon" onclick="showPrev()">
+                        <img src="./assets/icons/arrow-left.svg" alt="">
+                    </button>
+                    <button type="button" id="next-button" data-id="next-button" aria-label="Next Pokémon" onclick="showNext()">
+                        <img src="./assets/icons/arrow-right.svg" alt="">
+                    </button>
                 </div>
             </div>
         </div>
