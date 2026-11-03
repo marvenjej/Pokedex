@@ -26,9 +26,9 @@
                 <img src="./assets/icons/logo.svg" alt="Pokedex logo" class="logo">
             </a>
             <h1>Pokedex</h1>
-            <form class="search" id="search-form" role="search">
+            <form class="search" id="search-form" role="search" novalidate>
                 <input type="search" id="search-input" data-id="search-input">
-                <button type="button" id="search-button" data-id="search-button" aria-label="Search" onclick="searchPokemon()">
+                <button type="button" id="search-button" data-id="search-button" aria-label="Search" onclick="startSearch()">
                     <span class="search-text">Search</span>
                     <img src="./assets/icons/search.svg" alt="" class="search-icon">
                 </button>
@@ -64,6 +64,14 @@
                 </div>
             </div>
         </div>
+    </dialog>
+
+    <dialog id="hint-dialog" data-id="hint-dialog" class="hint-dialog" aria-label="Search hint" onclick="closeHintOnBackdrop(event)">
+        <button type="button" class="close-button" id="close-hint-button" data-id="close-hint-button" aria-label="Close hint" onclick="closeHint()">
+            <img src="./assets/icons/close.svg" alt="">
+        </button>
+        <h2>Search too short</h2>
+        <p id="hint-text" data-id="hint-text"></p>
     </dialog>
 
     <div class="loading" id="loading" data-id="loading" role="status" aria-label="Loading Pokémon" hidden>

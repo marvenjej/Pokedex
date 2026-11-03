@@ -21,7 +21,7 @@ function initSearch() {
     let searchFormRef = document.getElementById("search-form");
     searchFormRef.addEventListener("submit", function (event) {
         event.preventDefault();
-        searchPokemon();
+        startSearch();
     });
     let searchInputRef = document.getElementById("search-input");
     searchInputRef.addEventListener("input", function () {
@@ -78,6 +78,31 @@ function renderPokedex() {
     pokedexRef.innerHTML = "";
     for (let i = 0; i < shownPokemons.length; i++) {
         pokedexRef.innerHTML += getPokemonCardHtml(shownPokemons[i], i);
+    }
+}
+
+function startSearch() {
+    let searchText = document.getElementById("search-input").value.trim();
+    if (searchText.length > 0 && searchText.length < MIN_SEARCH_LENGTH) {
+        openHint();
+        return;
+    }
+    searchPokemon();
+}
+
+function openHint() {
+    let hintTextRef = document.getElementById("hint-text");
+    hintTextRef.textContent = `Please enter at least ${MIN_SEARCH_LENGTH} letters to search for a Pokémon.`;
+    document.getElementById("hint-dialog").showModal();
+}
+
+function closeHint() {
+    document.getElementById("hint-dialog").close();
+}
+
+function closeHintOnBackdrop(event) {
+    if (event.target.id == "hint-dialog") {
+        closeHint();
     }
 }
 

@@ -144,6 +144,22 @@ dialog::backdrop {
     background-color: rgba(255, 255, 255, 0.55);
 }
 
+.hint-dialog {
+    position: relative;
+    width: min(320px, 100% - 32px);
+    padding: 24px;
+    text-align: center;
+}
+
+.hint-dialog h2 {
+    margin: 0 40px 8px;
+    font-size: 1.3rem;
+}
+
+.hint-dialog .close-button {
+    background-color: rgba(20, 20, 50, 0.08);
+}
+
 .dialog-body {
     display: flex;
     flex-direction: column;
